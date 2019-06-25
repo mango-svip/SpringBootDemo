@@ -1,4 +1,13 @@
+spring:
+  profiles:
+    active: dev
 server:
   port: 8080
   http2:
     enabled: true
+
+douban:
+  tag:
+    hotUrl: https://book.douban.com/tag/?view=cloud
+    baseUrl: https://book.douban.com/tag/
+
