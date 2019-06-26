@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "book")
+@Accessors(chain = true)
 public class Book extends BaseEntity{
 
     @Id
@@ -24,14 +26,11 @@ public class Book extends BaseEntity{
     @Column(name = "`name`", columnDefinition = "varchar(32) not null")
     private String name;
 
-    @Column(name = "`author`", columnDefinition = "varchar(32) not null")
+    @Column(name = "`author`", columnDefinition = "varchar(256) not null")
     private String author;
 
-    @Column(name = "`press`", columnDefinition = "varchar(32) not null")
+    @Column(name = "`press`", columnDefinition = "varchar(256) not null")
     private String press;
-
-    @Column(name = "`price`", columnDefinition = "int(10)")
-    private Integer price;
 
     @Column(name = "`star`", columnDefinition = "float(10)")
     private Float star;
@@ -39,7 +38,13 @@ public class Book extends BaseEntity{
     @Column(name = "`ratingNum`", columnDefinition = "int(10)")
     private Integer ratingNum;
 
+    @Column(name = "img", columnDefinition = "varchar(256)")
+    private String img;
+
     @Column(name = "`desc`", columnDefinition = "varchar(1024)")
     private String desc;
+
+    @Column(name = "tag", columnDefinition = "varchar(32)")
+    private String tag;
 
 }

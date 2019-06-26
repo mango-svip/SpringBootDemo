@@ -29,4 +29,16 @@ public class BookTag extends BaseEntity {
     @Column(name = "has_next_page", columnDefinition = "TINYINT default 1")
     private Integer hasNextPage;
 
+
+    @Override
+    protected void prePersist() {
+        super.prePersist();
+        if (currentPage == null) {
+            currentPage = 0;
+        }
+
+        if(hasNextPage == null) {
+            hasNextPage = 1;
+        }
+    }
 }
