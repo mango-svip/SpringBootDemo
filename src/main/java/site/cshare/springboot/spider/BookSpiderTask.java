@@ -71,7 +71,7 @@ public class BookSpiderTask implements SpiderTask{
                 starNum = Float.valueOf(star);
                 num = Integer.valueOf(plNum.substring(plNum.indexOf("(") + 1, plNum.indexOf("人")));
             }catch (Exception e1) {
-                log.error("error",e);
+                log.error("error",e1);
             }
 
             Book book = new Book()
