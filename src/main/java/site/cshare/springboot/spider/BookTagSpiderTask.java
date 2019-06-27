@@ -37,7 +37,7 @@ public class BookTagSpiderTask implements SpiderTask {
     @Override
     public void handler() throws IOException {
 
-        Document document = Jsoup.parse(new URL(douBanConfig.getHotUrl()), 2000);
+        Document document = Jsoup.parse(new URL(douBanConfig.getHotUrl()), 5000);
         List<BookTagDTO> bookTagDTOList = new ArrayList<>();
         document.body().select("table.tagCol").select("td a").forEach(e -> {
             log.info("text = {}", e.text());

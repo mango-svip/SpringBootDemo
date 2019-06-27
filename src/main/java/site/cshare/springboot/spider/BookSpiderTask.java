@@ -39,7 +39,7 @@ public class BookSpiderTask implements SpiderTask{
         String url = douBanConfig.getBaseUrl() + leastSpiderBookTag.getTag();
         Integer currentPage = leastSpiderBookTag.getCurrentPage();
         url += "?start=" + getStart(currentPage) +"&type" + getType();
-        Document document = Jsoup.parse(new URL(url), 3000);
+        Document document = Jsoup.parse(new URL(url), 5000);
         List<Book> books = this.getBooks(document, leastSpiderBookTag.getTag());
         bookService.saveAll(books);
 
@@ -65,11 +65,20 @@ public class BookSpiderTask implements SpiderTask{
             String plNum = e.select("span.pl").text();
             String description = e.select("div.info").select("p").text();
             String[] split = text.split(" / ");
+            Float starNum = 0f ;
+            Integer num = 0;
+            try {
+                starNum = Float.valueOf(star);
+                num = Integer.valueOf(plNum.substring(plNum.indexOf("(") + 1, plNum.indexOf("人")));
+            }catch (Exception e1) {
+                log.error("error",e);
+            }
+
             Book book = new Book()
                     .setName(name)
                     .setImg(imgSrc)
-                    .setStar(Float.valueOf(star))
-                    .setRatingNum(Integer.valueOf(plNum.substring(plNum.indexOf("(") + 1, plNum.indexOf("人"))))
+                    .setStar(starNum)
+                    .setRatingNum(num)
                     .setDesc(description)
                     .setAuthor(split[0])
                     .setPress(text)

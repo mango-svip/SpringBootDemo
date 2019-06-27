@@ -23,7 +23,7 @@ public class Book extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "`name`", columnDefinition = "varchar(32) not null")
+    @Column(name = "`name`", columnDefinition = "varchar(128) not null")
     private String name;
 
     @Column(name = "`author`", columnDefinition = "varchar(256) not null")
